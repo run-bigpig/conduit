@@ -52,11 +52,17 @@ const goConfig = () => {
 };
 
 const showLog = ()=>{
+  let logLine = 0;
   EventsOn("log", (msg:string) => {
+     if (logLine>500){
+        logConetent.value = "";
+        logLine = 0;
+     }
      logConetent.value += msg;
      if(logArea.value){
        logArea.value.scrollTop = logArea.value.scrollHeight;
      }
+      logLine++;
   });
 }
 
