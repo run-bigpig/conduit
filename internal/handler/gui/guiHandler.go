@@ -3,7 +3,6 @@ package gui
 import (
 	"context"
 	"fmt"
-	"github.com/gofiber/fiber/v2/log"
 	"github.com/run-bigpig/conduit/internal/config"
 	"github.com/run-bigpig/conduit/internal/errcode"
 	"github.com/run-bigpig/conduit/internal/route"
@@ -100,7 +99,6 @@ func (g *GuiHandler) SetSystemConfig(req *types.SystemConfigRequest) *types.GuiR
 
 // SetCodeCompletionConfig 设置代码补全配置
 func (g *GuiHandler) SetCodeCompletionConfig(req *types.CompletionConfigRequest) *types.GuiResponse {
-	log.Infof("Set code completion config: %+v", req)
 	if req.Adapter == "" || req.Api == "" || req.Model == "" || req.Sk == "" || req.MaxTokens == 0 {
 		return utils.GuiFail(1, errcode.ErrInvalidParams)
 	}
@@ -124,5 +122,4 @@ func (g *GuiHandler) SetChatCompletionConfig(req *types.CompletionConfigRequest)
 	config.Write("chat.maxtokens", req.MaxTokens, true)
 	config.Write("chat.locale", req.Locale, true)
 	return utils.GuiSuccess(nil)
-
 }
