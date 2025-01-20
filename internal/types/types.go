@@ -92,6 +92,7 @@ type CompletionConfigRequest struct {
 	Model     string `json:"model"`
 	Adapter   string `json:"adapter"`
 	MaxTokens int    `json:"maxTokens"`
+	Locale    string `json:"locale,omitempty"`
 }
 
 type GuiResponse struct {

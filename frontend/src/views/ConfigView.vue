@@ -138,6 +138,13 @@
                 </template>
               </t-input>
             </t-form-item>
+            <t-form-item name="locale">
+              <t-input v-model="chatFromData.locale"  placeholder="请输入响应语言如 en/zh_CN">
+                <template #prefix-icon>
+                  <translate-icon />
+                </template>
+              </t-input>
+            </t-form-item>
             <t-form-item>
               <t-button theme="primary" type="submit" block>设置</t-button>
             </t-form-item>
@@ -154,7 +161,7 @@ import {
   LockOnIcon,
   KeyIcon,
   ControlPlatformIcon,
-  ApplicationIcon, Calculation1Icon, LogoChromeIcon, CertificateIcon, Certificate1Icon
+  ApplicationIcon, Calculation1Icon, LogoChromeIcon, CertificateIcon, Certificate1Icon, TranslateIcon
 } from "tdesign-icons-vue-next";
 import {setChatCompletionConfig, setCodeCompletionConfig, setSystemConfig} from "@/api/gui";
 import {FormProps} from "tdesign-vue-next";
@@ -180,7 +187,8 @@ const chatFromData = ref({
   sk:'',
   model:'',
   adapter:'',
-  maxTokens: 1024
+  maxTokens: 1024,
+  locale:'zh_CN'
 })
 
 const selectFile = (key:string)=>{
@@ -352,6 +360,20 @@ const codeRules: FormProps['rules'] = {
     {
       required: true,
       message: 'maxTokens必填',
+      type: 'error',
+      trigger: 'change',
+    },
+  ],
+  locale: [
+    {
+      required: true,
+      message: 'locale必填',
+      type: 'error',
+      trigger: 'blur',
+    },
+    {
+      required: true,
+      message: 'locale必填',
       type: 'error',
       trigger: 'change',
     },

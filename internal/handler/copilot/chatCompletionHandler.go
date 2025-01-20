@@ -1,6 +1,7 @@
 package copilot
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/run-bigpig/conduit/internal/adapter"
 	"github.com/run-bigpig/conduit/internal/config"
@@ -24,7 +25,7 @@ func ChatCompletionHandler(ctx *fiber.Ctx) error {
 	})
 	for _, msg := range req.Messages {
 		if msg.Role == "system" {
-			msg.Content = strings.ReplaceAll(msg.Content, "locale: en", "locale: zh_CN")
+			msg.Content = strings.ReplaceAll(msg.Content, "locale: en", fmt.Sprintf("locale: %s", config.ReadString("chat.locale")))
 		}
 	}
 	if err := at.Convert(&req); err != nil {

@@ -122,6 +122,7 @@ func (g *GuiHandler) SetChatCompletionConfig(req *types.CompletionConfigRequest)
 	config.Write("chat.model", req.Model, true)
 	config.Write("chat.sk", req.Sk, true)
 	config.Write("chat.maxtokens", req.MaxTokens, true)
+	config.Write("chat.locale", req.Locale, true)
 	return utils.GuiSuccess(nil)
 
 }

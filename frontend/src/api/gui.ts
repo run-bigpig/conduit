@@ -30,6 +30,7 @@ export interface CompletionConfig {
     model: string
     adapter: string
     maxTokens: number
+    locale: string
 }
 
 export function setCodeCompletionConfig(conf: CompletionConfig) {
